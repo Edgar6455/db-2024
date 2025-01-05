@@ -32,7 +32,7 @@ class Driver(DriverBase):
 
 class TripBase(BaseModel):
     car_id: int
-    driver_id: str
+    driver_id: int
     departure_date: date
     return_date: date
     distance: int

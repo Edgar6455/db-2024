@@ -11,7 +11,7 @@ CREATE TABLE Car (
 );
 
 CREATE TABLE Driver (
-    driver_id VARCHAR(25) UNIQUE PRIMARY KEY,
+    driver_id SERIAL PRIMARY KEY,
     full_name VARCHAR(100),
     category CHAR(1)
 );
@@ -19,11 +19,10 @@ CREATE TABLE Driver (
 CREATE TABLE Trip (
     trip_id SERIAL PRIMARY KEY,
     car_id INTEGER REFERENCES Car(car_id) ON DELETE CASCADE,
-    driver_id VARCHAR(25) REFERENCES Driver(driver_id) ON DELETE CASCADE,
+    driver_id INTEGER REFERENCES Driver(driver_id) ON DELETE CASCADE,
     departure_date DATE,
     return_date DATE,
     distance INTEGER,
     departure_point VARCHAR(50),
     destination VARCHAR(50)
 );
-

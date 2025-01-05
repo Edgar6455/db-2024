@@ -15,6 +15,11 @@ def get_db():
         db.close()
 
 # Car CRUD operations
+@app.get("/cars/")
+def read_cars(db: Session = Depends(get_db)):
+    cars = db.query(Car).all()
+    return cars
+
 @app.post("/cars/")
 def create_car(car: CarCreate, db: Session = Depends(get_db)):
     db_car = Car(number=car.number, brand=car.brand, load_capacity=car.load_capacity, fuel_consumption=car.fuel_consumption)
@@ -28,9 +33,17 @@ def read_car(car_id: int, db: Session = Depends(get_db)):
     return db.query(Car).filter(Car.car_id == car_id).first()
 
 # Driver CRUD operations
+@app.get("/drivers/")
+def read_drivers(db: Session = Depends(get_db)):
+    drivers = db.query(Driver).all()
+    return drivers
+
 @app.post("/drivers/")
 def create_driver(driver: DriverCreate, db: Session = Depends(get_db)):
-    db_driver = Driver(driver_id=driver.driver_id, full_name=driver.full_name, category=driver.category)
+    db_driver = Driver(
+        full_name=driver.full_name,
+        category=driver.category
+    )
     db.add(db_driver)
     db.commit()
     db.refresh(db_driver)

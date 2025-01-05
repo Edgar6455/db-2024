@@ -11,19 +11,25 @@ class Car(Base):
     load_capacity = Column(Integer)
     fuel_consumption = Column(DECIMAL(5, 2))
 
+    trips = relationship("Trip", back_populates="car")
+
+
 class Driver(Base):
     __tablename__ = 'driver'
 
-    driver_id = Column(String(25), primary_key=True, unique=True)
+    driver_id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String(100))
-    category = Column(CHAR(1))
+    category = Column(String(2))
+
+    trips = relationship("Trip", back_populates="driver")
+
 
 class Trip(Base):
     __tablename__ = 'trip'
 
     trip_id = Column(Integer, primary_key=True, index=True)
     car_id = Column(Integer, ForeignKey('car.car_id', ondelete='CASCADE'))
-    driver_id = Column(String(25), ForeignKey('driver.driver_id', ondelete='CASCADE'))
+    driver_id = Column(Integer, ForeignKey('driver.driver_id', ondelete='CASCADE'))
     departure_date = Column(Date)
     return_date = Column(Date)
     distance = Column(Integer)

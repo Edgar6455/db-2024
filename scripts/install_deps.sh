@@ -22,7 +22,7 @@ source "$VENV_DIR/bin/activate"
 
 echo "Installing dependencies..."
 pip install --upgrade pip
-pip install fastapi uvicorn sqlalchemy alembic psycopg2
+pip install fastapi uvicorn sqlalchemy alembic psycopg2 requests faker
 
 echo "Setup complete. Virtual environment created and dependencies installed."
 echo "To activate the virtual environment later, run: source $VENV_DIR/bin/activate"
