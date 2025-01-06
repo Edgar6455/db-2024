@@ -12,7 +12,8 @@ def generate_cars(num_cars):
             "number": faker.license_plate(),
             "brand": faker.company(),
             "load_capacity": random.randint(1000, 5000),
-            "fuel_consumption": round(random.uniform(5.0, 15.0), 2)
+            "fuel_consumption": round(random.uniform(5.0, 15.0), 2),
+            "color": random.choice(["Red", "Blue", "Green", "Black", "White"])
         }
         response = requests.post(f"{API_URL}/cars/", json=car_data)
         if response.status_code == 200:
@@ -44,7 +45,8 @@ def generate_trips(num_trips, car_ids, driver_ids):
             "return_date": faker.date_this_year().isoformat(),
             "distance": random.randint(50, 1000),
             "departure_point": faker.city(),
-            "destination": faker.city()
+            "destination": faker.city(),
+            "status": random.choice(["Scheduled", "In progress", "Complete"])
         }
         response = requests.post(f"{API_URL}/trips/", json=trip_data)
         if response.status_code == 200:

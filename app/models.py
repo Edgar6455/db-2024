@@ -10,6 +10,7 @@ class Car(Base):
     brand = Column(String(50))
     load_capacity = Column(Integer)
     fuel_consumption = Column(DECIMAL(5, 2))
+    color = Column(String(20))
 
     trips = relationship("Trip", back_populates="car")
 
@@ -35,6 +36,7 @@ class Trip(Base):
     distance = Column(Integer)
     departure_point = Column(String(50))
     destination = Column(String(50))
+    status = Column(String(20))
 
     car = relationship("Car", back_populates="trips")
     driver = relationship("Driver", back_populates="trips")

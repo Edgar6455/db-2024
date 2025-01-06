@@ -9,6 +9,7 @@ class CarBase(BaseModel):
     fuel_consumption: Optional[float] = None
 
 class CarCreate(CarBase):
+    color: Optional[str] = None
     pass
 
 class Car(CarBase):
@@ -40,6 +41,7 @@ class TripBase(BaseModel):
     destination: str
 
 class TripCreate(TripBase):
+    status: Optional[str] = None
     pass
 
 class Trip(TripBase):

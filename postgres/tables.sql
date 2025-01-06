@@ -7,7 +7,9 @@ CREATE TABLE Car (
     number VARCHAR(10) NOT NULL,
     brand VARCHAR(50),
     load_capacity INTEGER,
-    fuel_consumption DECIMAL(5, 2)
+    fuel_consumption DECIMAL(5, 2),
+    color VARCHAR(20), -- After migration
+    CONSTRAINT ix_car_number_brand UNIQUE (number, brand) -- After migration
 );
 
 CREATE TABLE Driver (
@@ -24,5 +26,9 @@ CREATE TABLE Trip (
     return_date DATE,
     distance INTEGER,
     departure_point VARCHAR(50),
-    destination VARCHAR(50)
+    destination VARCHAR(50),
+    status VARCHAR(20) -- After migration
 );
+
+-- After migration
+CREATE INDEX ix_trip_departure_date ON Trip (departure_date);
